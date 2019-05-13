@@ -1,0 +1,30 @@
+{
+    "name": "dotroll/dotroll-whmcs-module",
+    "description": "DotRoll Registrar Module for WHMCS Billing Automation Platform",
+    "keywords": [
+        "whmcs",
+        "web host automation platform",
+        "registrar module",
+        "domain registrar module",
+        "hungarian registrar module",
+        "dotroll"
+    ],
+    "homepage": "https://github.com/dotroll/dotroll-whmcs-module",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "DotRoll Kft.",
+            "email": "support@dotroll.com",
+            "homepage": "https://dotroll.com/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "support@dotroll.com",
+        "issues": "https://admin.dotroll.com/submitticket.php",
+        "chat": "https://admin.dotroll.com/chat/"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
+    }
+}
