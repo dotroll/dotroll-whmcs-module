@@ -37,17 +37,6 @@ abstract class Module {
 	protected const TZ = 'Europe/Budapest';
 
 	/**
-	 * API available base urls based on test mode
-	 *
-	 * @var array
-	 * @const
-	 */
-	protected const BASE_URLS = [
-		true => 'https://tryoutapi.webspacecontrol.com',
-		false => 'https://api.dotroll.com',
-	];
-
-	/**
 	 * Andmin interface language
 	 *
 	 * @var string
@@ -99,7 +88,7 @@ abstract class Module {
 		$this->params = $params;
 		$this->username = $this->params['Username'];
 		$this->password = $this->params['Password'];
-		$this->url = self::BASE_URLS[$this->params['TestMode'] == 'on' ? true : false];
+		$this->url = $this->params['BaseUrl'];
 		if (!empty($this->params['domainname'])) {
 			$this->domain = \strtolower(\idn_to_ascii($this->params['domainname']));
 		}

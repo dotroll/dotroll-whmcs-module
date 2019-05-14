@@ -32,7 +32,7 @@ class Config extends Module {
 			'Description' => ['Type' => 'System', 'Value' => Admin::trans('moduleDescription')],
 			'Username' => ['FriendlyName' => Admin::trans('usernameText'), 'Type' => 'text', 'Size' => '60', 'Description' => Admin::trans('usernameDescription')],
 			'Password' => ['FriendlyName' => Admin::trans('passwordText'), 'Type' => 'password', 'Size' => '60', 'Description' => Admin::trans('passwordDescription')],
-			'TestMode' => ['FriendlyName' => Admin::trans('testModeText'), 'Type' => 'yesno', 'Description' => Admin::trans('testModeDescription')]
+			'BaseUrl' => ['FriendlyName' => Admin::trans('baseUrlText'), 'Type' => 'text', 'Size' => '60', 'Description' => Admin::trans('baseUrlDescription')],
 		];
 	}
 
