@@ -184,7 +184,10 @@ class Client {
 		}
 		static::$countries = \json_decode(\file_get_contents(\ROOTDIR . '/resources/country/dist.countries.json'), true);
 		if (\is_file(\ROOTDIR . '/resources/country/countries.json')) {
-			static::$countries = \array_merge($countries, \json_decode(\file_get_contents(\ROOTDIR . '/resources/country/countries.json'), true));
+			$countries = \json_decode(\file_get_contents(\ROOTDIR . '/resources/country/countries.json'), true);
+			if (!empty($countries) && \is_array($countries)) {
+				static::$countries = \array_merge(static::$countries, $countries);
+			}
 		}
 		foreach (static::$countries as $code => &$country) {
 			if (isset($country['name'])) {
@@ -193,11 +196,10 @@ class Client {
 				unset(static::$countries[$code]);
 			}
 		}
-		if (static::getLanguage() == 'english') {
+		if (static::getLanguage() == 'hungarian') {
 			\uasort(static::$countries, function ($s1, $s2) {
-				\mb_internal_encoding('UTF-8');
 				static $chr = array('á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ö' => 'oz', 'ő' => 'oz', 'ú' => 'u', 'ü' => 'uz', 'ű' => 'uz', 'cs' => 'cz', 'zs' => 'zz', 'ccs' => 'czcz', 'ggy' => 'gzgz', 'lly' => 'lzlz', 'nny' => 'nznz', 'ssz' => 'szsz', 'tty' => 'tztz', 'zzs' => 'zzzz');
-				return \strcmp(\strtr(\mb_strtolower($s1), $chr), \strtr(\mb_strtolower($s2), $chr));
+				return \strcmp(\strtr(\mb_strtolower($s1, 'UTF-8'), $chr), \strtr(\mb_strtolower($s2, 'UTF-8'), $chr));
 			});
 		}
 		return static::$countries;
