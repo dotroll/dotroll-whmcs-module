@@ -198,7 +198,7 @@ class Client {
 		}
 		if (static::getLanguage() == 'hungarian') {
 			\uasort(static::$countries, function ($s1, $s2) {
-				static $chr = array('á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ö' => 'oz', 'ő' => 'oz', 'ú' => 'u', 'ü' => 'uz', 'ű' => 'uz', 'cs' => 'cz', 'zs' => 'zz', 'ccs' => 'czcz', 'ggy' => 'gzgz', 'lly' => 'lzlz', 'nny' => 'nznz', 'ssz' => 'szsz', 'tty' => 'tztz', 'zzs' => 'zzzz');
+				static $chr = ['á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ö' => 'oz', 'ő' => 'oz', 'ú' => 'u', 'ü' => 'uz', 'ű' => 'uz', 'cs' => 'cz', 'zs' => 'zz', 'ccs' => 'czcz', 'ggy' => 'gzgz', 'lly' => 'lzlz', 'nny' => 'nznz', 'ssz' => 'szsz', 'tty' => 'tztz', 'zzs' => 'zzzz'];
 				return \strcmp(\strtr(\mb_strtolower($s1, 'UTF-8'), $chr), \strtr(\mb_strtolower($s2, 'UTF-8'), $chr));
 			});
 		}
