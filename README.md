@@ -38,4 +38,8 @@ NOTE: DotRoll has a production as well as a test server environment. The test se
 
 * [API Documentation](https://admin.dotroll.com/modules/addons/api/api.pdf)
 
+## Associated repository
+
+- [DotRoll WHMCS related tools](https://github.com/dotroll/dotroll-whmcs-tools)
+
 [DotRoll Kft.](https://dotroll.com)
