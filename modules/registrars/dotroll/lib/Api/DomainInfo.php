@@ -114,7 +114,7 @@ class DomainInfo extends Module {
 	public function getEpp(): array {
 		$response = DomainData::toArray($this->params);
 		if (!empty($response['domain']['eppcode'])) {
-			return ['eppcode' => $response['domain']['eppcode']];
+			return ['eppcode' => \htmlspecialchars_decode($response['domain']['eppcode'])];
 		}
 		return [];
 	}
