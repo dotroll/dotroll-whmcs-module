@@ -39,6 +39,9 @@ class Registration extends Module {
 				'domain' => $this->domain,
 				'years' => $this->params['regperiod']
 			];
+			if ($action == 'transfer' && isset($this->params['transfersecret'])) {
+				$this->params['transfersecret'] = \trim($this->params['transfersecret']);
+			}
 			if ($action == 'transfer' && !empty($this->params['transfersecret'])) {
 				$request['eppcode'] = $this->params['transfersecret'];
 			}
