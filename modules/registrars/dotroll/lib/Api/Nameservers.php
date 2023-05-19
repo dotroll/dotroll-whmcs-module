@@ -31,7 +31,11 @@ class Nameservers extends Module {
 		try {
 			$response = DomainData::toArray($this->params);
 			if (isset($response['domain']['ns']) && \is_array($response['domain']['ns'])) {
-				return $response['domain']['ns'];
+				$retval = [];
+				foreach ($response['domain']['ns'] as $key => $value) {
+					$retval['ns' . ($key + 1)] = $value;
+				}
+				return $retval;
 			}
 			return [];
 		} catch (DotRollException $e) {
