@@ -43,7 +43,11 @@ class DomainInfo extends Module {
 				$domain->setDomain($response['domain']['domainname']);
 			}
 			if (isset($response['domain']['ns']) && \is_array($response['domain']['ns'])) {
-				$domain->setNameservers($response['domain']['ns']);
+				$ns = [];
+				foreach ($response['domain']['ns'] as $key => $value) {
+					$ns['ns' . ($key + 1)] = $value;
+				}
+				$domain->setNameservers($ns);
 			}
 			if (!empty($response['domain']['status']) && \in_array($response['domain']['status'], [
 					'Active',

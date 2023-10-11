@@ -100,7 +100,7 @@ class Client {
 	 *
 	 * @global array $_ADDONLANG
 	 */
-	private function loadTranslation() {
+	private static function loadTranslation() {
 		if (empty(static::$translation)) {
 			include \dirname(__DIR__) . \DIRECTORY_SEPARATOR . 'lang' . \DIRECTORY_SEPARATOR . static::getLanguage() . '.php';
 			static::$translation = $_ADDONLANG;
