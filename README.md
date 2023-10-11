@@ -16,7 +16,7 @@ After the configuration, you can configure DotRoll as your default registrar and
 ## Minimum Requirements
 
  - WHMCS Version 7.7.1
- - PHP 7.2 (Tested version PHP 7.2 and PHP 7.3)
+ - PHP 7.2 (Tested version PHP 7.2, PHP 7.3 and 8.1)
  - PHP IDN Functions
 
 ## Pre requirements
