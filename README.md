@@ -34,6 +34,7 @@ NOTE: DotRoll has a production as well as a test server environment. The test se
 4. Click on Save
 5. Navigate to Setup -> Products/Services -> Domain Pricing and select DotRoll as registrar for every TLD
 6. Insert the following lines into the resources/domains/additionalfields.php file
+   
    if (is_file(ROOTDIR . '/modules/registrars/dotroll/additionaldomainfields.php')) {
      include(ROOTDIR . '/modules/registrars/dotroll/additionaldomainfields.php');
    }
