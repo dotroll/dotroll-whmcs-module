@@ -11,7 +11,7 @@ After the configuration, you can configure DotRoll as your default registrar and
  - Domain and Domain Transfer Sync support
  - DNSSEC support
  - Integrated DNS zone editor support
- - .HU Electronic declaration support
+ - .HU domain registration policy (after 2025-03-19) https://www.domain.hu/domain-registration-policy/
 
 ## Minimum Requirements
 
