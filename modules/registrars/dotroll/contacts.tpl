@@ -26,7 +26,7 @@
 						{assign var="disabled" value=false}
 					{/if}
 					{if $domain|substr:-3 == '.hu'}
-						{if $name == 'firstname' || $name == 'lastname' || $name == 'companyname' || $name == 'vatnumber'}
+						{if $name == 'firstname' || $name == 'lastname' || $name == 'companyname' || $name == 'vatnumber' || $name == 'phonenumber' || $name == 'email' || $name == 'confirmemail' || $name == 'confirmphone'}
 							{assign var="disabled" value=true}
 						{/if}
 					{/if}

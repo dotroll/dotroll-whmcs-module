@@ -37,7 +37,7 @@ class Contacts extends Module {
 				foreach ($data['domain']['contacts'] as $type => $contact) {
 					if (!\in_array($type, ['zone'])) {
 						foreach ($contact as $field => $value) {
-							if (!\in_array($field, ['id', 'type', 'vatnumber']) || ($field == 'vatnumber' && $type == 'owner')) {
+							if (!\in_array($field, ['id', 'type', 'vatnumber'])) {
 								$contacts[$type][$field] = $value;
 							}
 						}

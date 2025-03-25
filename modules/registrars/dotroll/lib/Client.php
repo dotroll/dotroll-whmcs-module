@@ -205,4 +205,20 @@ class Client {
 		return static::$countries;
 	}
 
+	/**
+	 * Get default Additional Domain Fields
+	 *
+	 * @param string $tld
+	 * @return array
+	 */
+	public static function getDefaultAdditionalDomainFields(string $tld): array {
+		if (!is_file(ROOTDIR . '/resources/domains/dist.additionalfields.php')) {
+			return [];
+		}
+		require(ROOTDIR . '/resources/domains/dist.additionalfields.php');
+		if (!isset($additionaldomainfields[$tld])) {
+			return [];
+		}
+		return $additionaldomainfields[$tld];
+	}
 }
