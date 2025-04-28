@@ -170,7 +170,7 @@ class DomainInfo extends Module {
 					\logModuleCall(self::NAME, __FUNCTION__, $this->params, \array_merge($response, ['sync' => ['cancelled' => true]]));
 					return ['cancelled' => true];
 				}
-				throw new DotRollException($e->getMessage(), $e->getCode());
+				return [];
 			}
 		}
 		return [];
