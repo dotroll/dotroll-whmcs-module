@@ -135,7 +135,7 @@ class DomainInfo extends Module {
 	public function sync(): array {
 		if (!empty($this->params['domain'])) {
 			try {
-				$response = $this->connect('/domains/get/' . $this->params['domain']);
+				$response = $this->connect('/domains/get/' . \idn_to_ascii($this->params['domain']));
 				if (empty($response['domain']['status'])) {
 					\logModuleCall(self::NAME, __FUNCTION__, $this->params, \array_merge($response, ['sync' => ['cancelled' => true]]));
 					return ['cancelled' => true];
