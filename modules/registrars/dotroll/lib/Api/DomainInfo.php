@@ -137,8 +137,8 @@ class DomainInfo extends Module {
 			try {
 				$response = $this->connect('/domains/get/' . \idn_to_ascii($this->params['domain']));
 				if (empty($response['domain']['status'])) {
-					\logModuleCall(self::NAME, __FUNCTION__, $this->params, \array_merge($response, ['sync' => ['cancelled' => true]]));
-					return ['cancelled' => true];
+					\logModuleCall(self::NAME, __FUNCTION__, $this->params, \array_merge($response, ['sync' => []]));
+					return [];
 				}
 				if (empty($response['domain']['expirydate']) || $response['domain']['expirydate'] == '0000-00-00') {
 					\logModuleCall(self::NAME, __FUNCTION__, $this->params, \array_merge($response, ['sync' => []]));
