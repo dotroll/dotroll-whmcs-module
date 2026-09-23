@@ -51,6 +51,7 @@ use WHMCS\Database\Capsule;
 	$controlledTlds = [];
 	$error = [];
 	foreach ($_SESSION['cart']['domains'] as &$domain) {
+		$domain['domain'] = \mb_strtolower($domain['domain'], 'UTF-8');
 		if (\substr($domain['domain'], -3) == '.hu' && \in_array('.hu', $dotrollTlds)) {
 			$controlledTlds[] = '.hu';
 			if (!empty($domain['fields'][3])) {
@@ -67,7 +68,6 @@ use WHMCS\Database\Capsule;
 		} else {
 			continue;
 		}
-		$domain['domain'] = \mb_strtolower($domain['domain'], 'UTF-8');
 	}
 	if (empty($controlledTlds)) {
 		return;
