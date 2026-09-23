@@ -11,6 +11,10 @@
 use WHMCS\Database\Capsule;
 
 \add_hook('ShoppingCartValidateCheckout', 1, function (array $vars) {
+	$dotrollTlds = [];
+	foreach (Capsule::table('tbldomainpricing')->where('autoreg', 'dotroll')->get() as $autoreg) {
+		$dotrollTlds[] = $autoreg->extension;
+	}
 	if (empty($_SESSION['cart']['domains'])) {
 		return;
 	}
@@ -47,8 +51,7 @@ use WHMCS\Database\Capsule;
 	$controlledTlds = [];
 	$error = [];
 	foreach ($_SESSION['cart']['domains'] as &$domain) {
-		$domain['domain'] = \mb_strtolower($domain['domain'], 'UTF-8');
-		if (\substr($domain['domain'], -3) == '.hu') {
+		if (\substr($domain['domain'], -3) == '.hu' && \in_array('.hu', $dotrollTlds)) {
 			$controlledTlds[] = '.hu';
 			if (!empty($domain['fields'][3])) {
 				$registrant['birthdate'] = $domain['fields'][3];
@@ -59,9 +62,15 @@ use WHMCS\Database\Capsule;
 					$error[] = 'Wrong Auth Code';
 				}
 			}
-		} elseif (\substr($domain['domain'], -3) == '.eu') {
+		} elseif (\substr($domain['domain'], -3) == '.eu' && \in_array('.hu', $dotrollTlds)) {
 			$controlledTlds[] = '.eu';
+		} else {
+			continue;
 		}
+		$domain['domain'] = \mb_strtolower($domain['domain'], 'UTF-8');
+	}
+	if (empty($controlledTlds)) {
+		return;
 	}
 	if (!empty($vars['country-calling-code-phonenumber']) && !empty($vars['phonenumber'])) {
 		$vars['phonenumber'] = '+' . $vars['country-calling-code-phonenumber'] . '.' . \preg_replace('/[^0-9]+/', '', $vars['phonenumber']);
@@ -100,22 +109,6 @@ use WHMCS\Database\Capsule;
 
 	if (!empty($error)) {
 		return $error;
-	}
-	return;
-});
-
-\add_hook('ShoppingCartValidateDomainsConfig', 1, function (array $vars) {
-	$retval = [];
-	if (!empty($vars['epp'])) {
-		foreach ($vars['epp'] as $epp) {
-			$check = \str_replace('-', '', \strtoupper($epp));
-			if (empty($check) || !\preg_match('/^[A-Z0-9]{16}$/', $check)) {
-				$retval[] = 'Wrong Auth Code';
-			}
-		}
-	}
-	if (!empty($retval)) {
-		return $retval;
 	}
 	return;
 });
